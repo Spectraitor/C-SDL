@@ -52,12 +52,6 @@ namespace judg3
 		m_buffer = new Uint32[SCREEN_WITH * SCREEN_HEIGHT];
 
 		std::memset(m_buffer, 0, SCREEN_WITH * SCREEN_HEIGHT * sizeof(Uint32));
-		//memset(buffer + (10 * SCREEN_WITH), 0, SCREEN_WITH * 10 * sizeof(Uint32));
-
-		for (int i = 0; i < SCREEN_WITH * SCREEN_HEIGHT; ++i)
-		{
-			m_buffer[i] = 0xa423db00;
-		}
 
 		SDL_UpdateTexture(m_texture, NULL, m_buffer, SCREEN_WITH * sizeof(Uint32));
 		SDL_RenderClear(m_renderer);
@@ -91,4 +85,21 @@ namespace judg3
 		SDL_Quit();
 
 	}
+
+	void Screen::update()
+	{
+		SDL_UpdateTexture(m_texture, NULL, m_buffer, SCREEN_WITH * sizeof(Uint32));
+		SDL_RenderClear(m_renderer);
+		SDL_RenderCopy(m_renderer, m_texture, NULL, NULL);
+		SDL_RenderPresent(m_renderer);
+	}
+
+	void Screen::setPixel(int x, int y, Uint8 red, Uint8 green, Uint8 blue)
+	{
+		/*Setting 32 bit number to RGB mix by using bitshift*/
+		Uint32 rgb = (red << 24) + (green << 16) + (blue << 8);
+		/*Setting the buffer index to the RGB data*/
+		m_buffer[x + (SCREEN_WITH * y)] = rgb;
+	}
+
 } /*Namespace Judg3*/

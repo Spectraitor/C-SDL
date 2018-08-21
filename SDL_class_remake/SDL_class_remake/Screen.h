@@ -4,6 +4,7 @@
 #define SCREEN_H
 
 #include <SDL.h>
+#include <Windows.h>
 
 namespace judg3
 {
@@ -24,6 +25,8 @@ namespace judg3
 		~Screen();
 		bool init();
 		bool processEvents();
+		void update();
+		void setPixel(int x, int y, Uint8 red, Uint8 green, Uint8 blue);
 		void close();
 	};
 }
