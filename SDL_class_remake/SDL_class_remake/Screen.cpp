@@ -96,10 +96,15 @@ namespace judg3
 
 	void Screen::setPixel(int x, int y, Uint8 red, Uint8 green, Uint8 blue)
 	{
-		/*Setting 32 bit number to RGB mix by using bitshift*/
-		Uint32 rgb = (red << 24) + (green << 16) + (blue << 8);
-		/*Setting the buffer index to the RGB data*/
-		m_buffer[x + (SCREEN_WITH * y)] = rgb;
+		/*Check for out of bounds*/
+		if (x < SCREEN_WITH && y < SCREEN_HEIGHT && x >= 0 && y >= 0)
+		{
+			/*Setting 32 bit number to RGB mix by using bitshift*/
+			Uint32 rgb = (red << 24) + (green << 16) + (blue << 8);
+
+			/*Setting the buffer index to the RGB data*/
+			m_buffer[x + (SCREEN_WITH * y)] = rgb;
+		}
 	}
 
 } /*Namespace Judg3*/

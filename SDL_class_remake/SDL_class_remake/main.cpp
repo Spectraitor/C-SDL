@@ -2,12 +2,16 @@
 #include <SDL.h>
 #include <Windows.h>
 #include <math.h>
+#include <stdlib.h>
+#include <time.h>
+#include "Swarm.h"
 #include "Screen.h"
 using namespace std;
 using namespace judg3;
 
 int main(int argc, char *argv[])
 {
+	srand(time(NULL));
 
 	Screen screen;
 
@@ -16,6 +20,7 @@ int main(int argc, char *argv[])
 		cout << "Error initialising SDL." << endl;
 	}
 
+	Swarm swarm;
 
 	while (true)
 	{
@@ -28,8 +33,14 @@ int main(int argc, char *argv[])
 		{
 			for (int x = 0; x < Screen::SCREEN_WITH; ++x)
 			{
-				screen.setPixel(x, y, red, green, blue);
+				screen.setPixel(x, y, 255 - red, 255 - green, 255 - blue);
 			}
+		}
+
+
+		for (int i = 0; i < swarm.NPARTICLES; ++i)
+		{
+			screen.setPixel((swarm.getParticles()[i].m_x + 1) * (Screen::SCREEN_WITH / 2) , (swarm.getParticles()[i].m_y + 1) * (Screen::SCREEN_HEIGHT / 2), red, green, blue);
 		}
 
 		screen.update();
