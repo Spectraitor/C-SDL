@@ -11,7 +11,7 @@ namespace judg3
 	class Swarm
 	{
 	public:
-		const static int NPARTICLES = 200000;
+		const static int NPARTICLES = 1000;
 
 	private:
 		Particle * m_Particle_ptr;
@@ -21,6 +21,7 @@ namespace judg3
 		~Swarm();
 
 		const Particle* const getParticles() { return m_Particle_ptr; }
+		void update();
 	};
 
 }

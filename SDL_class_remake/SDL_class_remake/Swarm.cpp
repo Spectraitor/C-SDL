@@ -14,4 +14,12 @@ namespace judg3
 		delete[] m_Particle_ptr;
 	}
 
+	void Swarm::update()
+	{
+		for (int i = 0; i < NPARTICLES; ++i)
+		{
+			m_Particle_ptr[i].update();
+		}
+	}
+
 } /*Namespace judg3*/

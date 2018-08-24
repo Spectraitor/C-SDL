@@ -29,14 +29,17 @@ int main(int argc, char *argv[])
 		Uint8 green = (1 + sin(elapsed * 0.0002)) * 128;
 		Uint8 blue = (1 + sin(elapsed * 0.0006)) * 128;
 
-		for (int y = 0; y < Screen::SCREEN_HEIGHT; ++y)
+		swarm.update();
+
+		/*for (int y = 0; y < Screen::SCREEN_HEIGHT; ++y)
 		{
 			for (int x = 0; x < Screen::SCREEN_WITH; ++x)
 			{
 				screen.setPixel(x, y, 255 - red, 255 - green, 255 - blue);
 			}
-		}
+		}*/
 
+		screen.clear();
 
 		for (int i = 0; i < swarm.NPARTICLES; ++i)
 		{

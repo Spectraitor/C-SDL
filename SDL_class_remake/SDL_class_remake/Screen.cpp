@@ -107,4 +107,10 @@ namespace judg3
 		}
 	}
 
+	void Screen::clear()
+	{
+		std::memset(m_buffer, 0, SCREEN_WITH * SCREEN_HEIGHT * sizeof(Uint32));
+		update();
+	}
+
 } /*Namespace Judg3*/
