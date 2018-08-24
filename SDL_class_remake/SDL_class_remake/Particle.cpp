@@ -1,20 +1,18 @@
 #include "Particle.h"
+#define _USE_MATH_DEFINES
 #include <stdlib.h>
-#include <math.h>
+#include <cmath>
 
 namespace judg3
 {
 
-	Particle::Particle()
+	Particle::Particle(): m_x(0), m_y(0)
 	{
 		/*m_x = 2.0 * ((double)rand() / RAND_MAX) - 1;
 		m_y = 2.0 * ((double)rand() / RAND_MAX) - 1; */
 
-		m_x = 0;
-		m_y = 0;
-
-		m_xspeed = 0.005 * sin(rand());
-		m_yspeed = 0.005 * sin(rand());
+		direction = (2 * M_PI * rand()) / RAND_MAX;
+		mspeed = (0.008 * rand()) / RAND_MAX;
 	}
 
 
@@ -25,17 +23,17 @@ namespace judg3
 	void Particle::update()
 	{
 
-		m_x += m_xspeed;
-		m_y += m_yspeed;
+		m_x += mspeed * cos(direction);
+		m_y += mspeed * sin(direction);
 
 		if (m_x <= -1 || m_x >= 1)
 		{
-			m_xspeed = -m_xspeed;
+			direction = M_PI - direction;
 		}
 
 		if (m_y <= -1 || m_y >= 1)
 		{
-			m_yspeed = -m_yspeed;
+			direction = 2 * M_PI - direction;
 		}
 	}
 

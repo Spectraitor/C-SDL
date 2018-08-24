@@ -15,7 +15,8 @@ namespace judg3
 	private:
 		double m_xspeed;
 		double m_yspeed;
-
+		double direction;
+		double mspeed;
 
 	public:
 		Particle();
